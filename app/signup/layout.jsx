@@ -1,15 +1,17 @@
-import LoginForm from "@/components/forms/LoginForm";
+import { SignupProvider } from "@/context/SignupContext";
 import Image from "next/image";
 import Link from "next/link";
 
+import React from "react";
+
 export const metadata = {
-  title: "Login",
-  description: "Login into your account",
+  title: "Signup",
+  description: "Create a new account",
 };
 
-const Login = () => {
+export default function SignupLayout({ children }) {
   return (
-    <>
+    <div className="">
       <div className="fixed m-8">
         <Link href={"/"}>
           <Image
@@ -20,12 +22,7 @@ const Login = () => {
           />
         </Link>
       </div>
-
-      <div className="h-screen w-screen flex items-center justify-center px-8">
-        <LoginForm />
-      </div>
-    </>
+      <SignupProvider>{children}</SignupProvider>
+    </div>
   );
-};
-
-export default Login;
+}
