@@ -165,7 +165,7 @@ export const UserContextProvider = ({ children }) => {
   };
   const handleGetOverview = () => {
     const year = overviewState?.year;
-    console.log(year, "year");
+
     handleRequest({
       url: `/admin-app/dashboard/overview/?year=${year}`,
       method: "get",

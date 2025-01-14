@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { handleRequest } from "@/lib/api";
 import { useModalControl } from "@/context/ModalControl";
 import { CgSpinnerTwo } from "react-icons/cg";
+import { storage } from "@/utils/storage";
 
 const EditBookingForm = () => {
-  const bookingId = sessionStorage.getItem("bookingId");
+  const bookingId = storage.get("bookingId");
   const { openEditBooking, setOpenEditBooking } = useModalControl();
 
   const [putBooking, setPutBooking] = useState({

@@ -29,10 +29,10 @@ const Profile = () => {
           />
         </section>
         <UserProfile />
-        <UserBookingActivities />
+        {/*  <UserBookingActivities /> */}
       </aside>
-      <UserBookingDetail />
-      <EditUserDetails />
+      {/* <UserBookingDetail /> */}
+      {/*  <EditUserDetails /> */}
     </>
   );
 };

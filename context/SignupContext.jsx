@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { baseUrl } from "@/lib/api";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export const SignupContext = createContext();
 
@@ -49,7 +50,7 @@ export const SignupProvider = ({ children }) => {
       password2: password,
       device_token: "admin",
     };
-
+    let toastId;
     try {
       setIsLoading(true);
       const response = await axios.post(url, data);
@@ -58,21 +59,29 @@ export const SignupProvider = ({ children }) => {
 
       //navigate("/otp");
       if (response.status === 200) {
-        router.push("/signup/otp");
+        toast.success(response?.data?.message);
+        await router.push("/signup/otp");
       }
 
-      if (!response.statusText === "Created") {
+      /*  if (!response.statusText === "Created") {
         {
           setRegisterData({ email: "", first_name: "", last_name: "" });
           setPassword("");
           setPassword2("");
         }
-      }
+      } */
 
       setIsLoading(false);
     } catch (error) {
-      setErrMsg(error.response.data.message);
+      const errorMessage =
+        error.response?.data?.message || error.message || "Request failed";
+
+      setErrMsg?.(errorMessage);
+      toast.error(errorMessage);
     } finally {
+      if (toastId) {
+        toast.dismiss(toastId);
+      }
       setIsLoading(false);
     }
   };

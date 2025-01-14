@@ -6,12 +6,12 @@ const ArtisanBusinessDetails = () => {
     <section className="space-y-4 border p-3 rounded-md shadow-sm ">
       <div className="flex items-center gap-3">
         <h2 className="font-medium">Business Details</h2>
-        <button
+        {/* <button
           onClick={() => setOpenEditUserDetails(true)}
           className="text-secondary font-medium"
         >
           Edit
-        </button>
+        </button> */}
       </div>
 
       <div className="flex md:flex-row flex-col  items-center gap-4">

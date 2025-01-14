@@ -24,16 +24,11 @@ const Profile = () => {
     handleGetUserProfile("artisan-user", id);
   }, [id]);
 
-  const titles = useMemo(
-    () => [" Details", "Bookings", "Services", "Subscriptions"],
-    []
-  );
+  const titles = useMemo(() => [" Details", "Services"], []);
   const contents = useMemo(
     () => [
       <ArtisanProfile key="ArtisanProfile" />,
-      <ArtisanBookingActivities key="ArtisanBookingActivities" />,
       <ArtisanServices key="ArtisanServices" />,
-      <ArtisanSubscriptions key="ArtisanSubscriptions" />,
     ],
     []
   );

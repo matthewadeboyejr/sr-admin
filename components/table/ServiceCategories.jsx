@@ -14,6 +14,7 @@ import AddCategory from "../modals/AddCategory";
 import { handleRequest } from "@/lib/api";
 import UploadCtgImage from "../modals/UploadCtgImage";
 import EditCategory from "../modals/EditCategory";
+import { storage } from "@/utils/storage";
 
 export default function ServiceCategories() {
   const [deleteState, setDeleteState] = useState({
@@ -112,7 +113,9 @@ export default function ServiceCategories() {
   };
 
   const handleDropdownActions = async (action, id) => {
-    sessionStorage.setItem("categoryId", id);
+    //sessionStorage.setItem("categoryId", id);
+
+    storage.set("categoryId", id);
 
     switch (action) {
       case "view":

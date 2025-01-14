@@ -48,12 +48,7 @@ export default function ServiceUsers() {
           <li className="hover:bg-secondary/20 p-2 rounded-md cursor-pointer">
             <button onClick={() => handleViewProfile(id)}>View profile</button>
           </li>
-          <li className="hover:bg-secondary/20 p-2 rounded-md cursor-pointer">
-            Activities
-          </li>
-          <li className="hover:bg-secondary/20 p-2 rounded-md cursor-pointer">
-            Message
-          </li>
+
           <li
             onClick={() => {
               handleUserStatus(action(), "service-users", id);

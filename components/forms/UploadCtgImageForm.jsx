@@ -5,6 +5,7 @@ import { handleRequest } from "@/lib/api";
 import { useModalControl } from "@/context/ModalControl";
 import { CgSpinnerTwo } from "react-icons/cg";
 import toast from "react-hot-toast";
+import { storage } from "@/utils/storage";
 
 const UploadCtgImageForm = () => {
   const { setOpenUploadCtgImage } = useModalControl();
@@ -50,7 +51,7 @@ const UploadCtgImageForm = () => {
 
   const handleUploadImage = async (e) => {
     e.preventDefault();
-    const categoryId = sessionStorage.getItem("categoryId");
+    const categoryId = storage.get("categoryId");
     console.log("image", image);
     await handleRequest({
       url: `/admin-app/api/v1/upload-category/?category_id=${categoryId}`,

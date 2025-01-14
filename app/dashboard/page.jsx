@@ -37,8 +37,6 @@ const Dashboard = () => {
   const activeArtisan = overview?.active_artisan || 0;
   const activeServUser = overview?.active_service_user || 0;
 
-  console.log("Overview", overviews);
-
   return (
     <aside className=" flex-1  space-y-5">
       <section className="flex items-center justify-between">

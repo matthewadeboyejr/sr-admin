@@ -1,6 +1,7 @@
 import { useModalControl } from "@/context/ModalControl";
 import { useUserContext } from "@/context/UsersContext";
 import { formatTimestamp } from "@/utils/formatTimestamp";
+import { storage } from "@/utils/storage";
 import React, { useEffect } from "react";
 import { RiCloseFill } from "react-icons/ri";
 
@@ -8,7 +9,7 @@ export default function PaymentDetail() {
   const { openPaymentDetails, setOpenPaymentDetails } = useModalControl();
   const { handlePaymentById, paymentState } = useUserContext();
 
-  const paymentId = sessionStorage.getItem("paymentId");
+  const paymentId = storage.get("paymentId");
 
   useEffect(() => {
     if (paymentId) {
@@ -39,7 +40,7 @@ export default function PaymentDetail() {
               <h3 className="text-sm font-medium">Payment Details</h3>
               <button
                 onClick={() => {
-                  sessionStorage.removeItem("paymentId");
+                  storage.remove("paymentId");
                   setOpenPaymentDetails(false);
                 }}
                 className="text-lg cursor-pointer hover:scale-x-125 transition-all  "

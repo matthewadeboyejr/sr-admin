@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { axiosInstance } from "./api";
 
 export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -20,13 +21,27 @@ export const useAuth = () => {
     setIsAuthenticated(true);
   };
 
-  const logout = () => {
+  const logout = async () => {
     const toastid = toast.loading("signing out");
-    Cookies.remove("accessToken");
-    setIsAuthenticated(false);
-    toast.success("Logged Out");
-    router.push(`/`);
-    toast.dismiss(toastid);
+    const url = "/account/api/v1/logout/";
+
+    try {
+      const response = await axiosInstance.post(url);
+      if (response.status === 200) {
+        console.log("response logout", response);
+        toast.success(response?.data?.message || "Logged Out");
+        Cookies.remove("accessToken");
+        setIsAuthenticated(false);
+        await router.push(`/`);
+      } else {
+        const errorMessage = response?.data?.message || "Unexpected response.";
+        throw new Error(errorMessage);
+      }
+    } catch (error) {
+      throw new Error(error);
+    } finally {
+      toast.dismiss(toastid);
+    }
   };
 
   return { isAuthenticated, login, logout };

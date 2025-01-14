@@ -43,12 +43,12 @@ export default function ArtisanServices() {
               View Payments{" "}
             </button>
           </li>
-          <li className="hover:bg-secondary/20 p-2 rounded-md cursor-pointer">
+          {/* <li className="hover:bg-secondary/20 p-2 rounded-md cursor-pointer">
             Activities
           </li>
           <li className="hover:bg-secondary/20 p-2 rounded-md cursor-pointer">
             Message
-          </li>
+          </li> */}
           <li
             onClick={() => {
               handleUserStatus(action(), "service-users", id);
@@ -148,9 +148,9 @@ export default function ArtisanServices() {
 
   return (
     <section className="gap-5 ">
-      <div className="border p-3 rounded-md shadow-sm space-y-5 ">
+      <div className="border  p-3 rounded-md shadow-sm space-y-5 ">
         <div className="flex items-center justify-between">
-          <h2 className="font-medium">Service User</h2>
+          <h2 className="font-medium">Subscribed Services </h2>
           <div className="border p-2 flex items-center gap-4 rounded-3xl cursor-pointer">
             <span className="w-3 h-3 rounded-full opacity-30">
               <IoFilterOutline />
@@ -164,7 +164,7 @@ export default function ArtisanServices() {
             No service data available
           </p>
         ) : (
-          <div className="max-h-screen overflow-y-auto space-y-4 relative overflow-x-auto ">
+          <div className="max-h-screen min-h-96 overflow-y-auto space-y-4 relative overflow-x-auto ">
             <table className="w-full text-sm text-left rtl:text-right">
               <thead className="bg-primary/10  rounded-md  whitespace-nowrap">
                 <TableHeader />

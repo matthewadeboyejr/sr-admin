@@ -1,6 +1,7 @@
 import { useModalControl } from "@/context/ModalControl";
 import { useUserContext } from "@/context/UsersContext";
 import { formatTimestamp } from "@/utils/formatTimestamp";
+import { storage } from "@/utils/storage";
 import React, { useEffect } from "react";
 import { RiCloseFill } from "react-icons/ri";
 
@@ -8,7 +9,9 @@ export default function BookingDetail() {
   const { openBookingDetails, setOpenBookingDetails } = useModalControl();
   const { handleBookingById, bookingState } = useUserContext();
 
-  const bookingId = sessionStorage.getItem("bookingId") || null;
+  //const bookingId = sessionStorage.getItem("bookingId") || null;
+
+  const bookingId = storage.get("bookingId");
 
   useEffect(() => {
     if (openBookingDetails && bookingId) {
@@ -46,7 +49,8 @@ export default function BookingDetail() {
               </div>
               <button
                 onClick={() => {
-                  sessionStorage.removeItem("paymentId");
+                  //sessionStorage.removeItem("paymentId");
+                  storage.remove("bookingId");
                   setOpenBookingDetails(false);
                 }}
                 className="text-lg cursor-pointer hover:scale-x-125 transition-all  "

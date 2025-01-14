@@ -1,5 +1,6 @@
 import { useModalControl } from "@/context/ModalControl";
 import { useUserContext } from "@/context/UsersContext";
+import { storage } from "@/utils/storage";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import { RiCloseFill } from "react-icons/ri";
@@ -8,7 +9,9 @@ export default function CategoryDetails() {
   const { openCategoryDetails, setOpenCategoryDetails } = useModalControl();
   const { handleCategoryById, categoryState } = useUserContext();
 
-  const categoryId = sessionStorage.getItem("categoryId") || null;
+  //const categoryId = sessionStorage.getItem("categoryId") || null;
+
+  const categoryId = storage.get("categoryId");
 
   useEffect(() => {
     if (openCategoryDetails && categoryId) {
@@ -43,7 +46,8 @@ export default function CategoryDetails() {
               </div>
               <button
                 onClick={() => {
-                  sessionStorage.removeItem("categoryId");
+                  //sessionStorage.removeItem("categoryId");
+                  storage.remove("categoryId");
                   setOpenCategoryDetails(false);
                 }}
                 className="text-lg cursor-pointer hover:scale-x-125 transition-all  "

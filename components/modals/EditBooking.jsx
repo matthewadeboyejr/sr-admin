@@ -4,6 +4,7 @@ import { formatTimestamp } from "@/utils/formatTimestamp";
 import React, { useEffect } from "react";
 import { RiCloseFill } from "react-icons/ri";
 import EditBookingForm from "../forms/EditBookingForm";
+import { storage } from "@/utils/storage";
 
 export default function EditBooking() {
   const { openEditBooking, setOpenEditBooking } = useModalControl();
@@ -26,7 +27,7 @@ export default function EditBooking() {
               </div>
               <button
                 onClick={() => {
-                  sessionStorage.removeItem("BookingId");
+                  storage.remove("BookingId");
                   setOpenEditBooking(false);
                 }}
                 className="text-lg cursor-pointer hover:scale-x-125 transition-all  "

@@ -7,6 +7,8 @@ import ConfirmSignup from "../general/ConfirmSignup";
 import BackButton from "../general/BackButton";
 import axios from "axios";
 import { baseUrl } from "@/lib/api";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 function OtpForm() {
   const { userRegData, handleSubmit } = useSignupContext();
@@ -18,6 +20,7 @@ function OtpForm() {
   const [verify, setVerify] = useState(false);
 
   useEffect(() => otpRef.current.focus());
+  const router = useRouter();
 
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
@@ -25,27 +28,34 @@ function OtpForm() {
     const url = `${baseUrl}/account/api/v1/verify-email/`;
     const email = userRegData?.data?.email;
     const data = { otp, email };
+    let toastId;
 
     try {
       setIsLoading(true);
       const response = await axios.post(url, data);
       if (response && response.status === 200) {
+        toast.success(response?.data?.message);
         setVerify(true);
+        await router.push("/");
       }
     } catch (error) {
-      setErrMsg(error.response.data.message);
+      const errorMessage =
+        error.response?.data?.message || error.message || "Request failed";
+
+      setErrMsg?.(errorMessage);
+      toast.error(errorMessage);
+    } finally {
+      if (toastId) {
+        toast.dismiss(toastId);
+      }
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
     <>
       {!verify && (
-        <form
-          className="w-full max-w-md space-y-6"
-          aria-label="Login Form"
-          onClick={handleOtpSubmit}
-        >
+        <form className="w-full max-w-md space-y-6" aria-label="Otp Form">
           <BackButton />
           <div>
             <h1 className="text-2xl font-medium">One time Password</h1>
@@ -94,6 +104,7 @@ function OtpForm() {
           </div>
           <button
             type="submit"
+            onClick={handleOtpSubmit}
             className="bg-primary text-secondary font-semibold rounded-md py-3 text-sm w-full hover:opacity-90"
           >
             <div className="flex justify-center items-center">

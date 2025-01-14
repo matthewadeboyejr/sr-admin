@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { RiCloseFill } from "react-icons/ri";
 import EditBookingForm from "../forms/EditBookingForm";
 import EditCategoryForm from "../forms/EditCategoryForm";
+import { storage } from "@/utils/storage";
 
 export default function EditCategory() {
   const { openEditCategory, setOpenEditCategory } = useModalControl();
@@ -27,7 +28,7 @@ export default function EditCategory() {
               </div>
               <button
                 onClick={() => {
-                  sessionStorage.removeItem("categoryId");
+                  storage.remove("categoryId");
                   setOpenEditCategory(false);
                 }}
                 className="text-lg cursor-pointer hover:scale-x-125 transition-all  "

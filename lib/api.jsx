@@ -43,7 +43,7 @@ const handleRequest = async ({
       method,
       ...(data && { data }),
     });
-    console.log("from post api helper:", response);
+
     if (response.status === 200) {
       toast.success(response?.data?.message || "Completed");
       setResponse?.(response.data);
@@ -54,7 +54,7 @@ const handleRequest = async ({
   } catch (error) {
     const errorMessage =
       error.response?.data?.message || error.message || "Request failed";
-    console.error("API Request Error:", error);
+
     setError?.(errorMessage);
     toast.error(errorMessage);
   } finally {

@@ -6,9 +6,10 @@ import { useModalControl } from "@/context/ModalControl";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { useUserContext } from "@/context/UsersContext";
 import toast from "react-hot-toast";
+import { storage } from "@/utils/storage";
 
 const EditCategoryForm = () => {
-  const categoryId = sessionStorage.getItem("categoryId");
+  const categoryId = storage.get("categoryId");
   const { openEditCategory, setOpenEditCategory } = useModalControl();
   const { handleCategoryById, categoryState } = useUserContext();
 

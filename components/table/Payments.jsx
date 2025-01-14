@@ -9,6 +9,7 @@ import { CiCircleMore } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { IoFilterOutline } from "react-icons/io5";
 import PaymentDetail from "../modals/PaymentDetails";
+import { storage } from "@/utils/storage";
 
 export default function Payments() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -40,6 +41,21 @@ export default function Payments() {
     setIsDropdownOpen((prev) => (prev === userId ? null : userId));
   };
 
+  const handleDropdownActions = async (action, id) => {
+    storage.set("paymentId", id);
+
+    switch (action) {
+      case "view":
+        setOpenPaymentDetails(true);
+        break;
+
+      default:
+        break;
+    }
+
+    setIsDropdownOpen(null);
+  };
+
   const DropdownMenu = ({ toggleDropdown, id }) => {
     return (
       <div className="absolute right-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
@@ -47,8 +63,10 @@ export default function Payments() {
           <li className="hover:bg-secondary/20 p-2 rounded-md cursor-pointer">
             <button
               onClick={() => {
-                sessionStorage.setItem("paymentId", id);
-                setOpenPaymentDetails(true);
+                //sessionStorage.setItem("paymentId", id);
+                //setOpenPaymentDetails(true);
+
+                handleDropdownActions("view", id);
               }}
             >
               View Details
@@ -203,7 +221,8 @@ export default function Payments() {
           </p>
         </div>
       </div>
-      <PaymentDetail />
+
+      {setOpenPaymentDetails && <PaymentDetail />}
     </section>
   );
 }

@@ -19,7 +19,7 @@ export default function Artisans() {
 
   useEffect(() => {
     handleGetUsers("artisan-user", page);
-  }, [page, userState]);
+  }, [page]);
 
   const artisansList = userState?.artisans?.getData?.results || [];
   const prevPage = userState?.artisans?.getData?.previous || "";
@@ -49,12 +49,12 @@ export default function Artisans() {
           <li className="hover:bg-secondary/20 p-2 rounded-md cursor-pointer">
             <button onClick={() => handleViewProfile(id)}>View profile</button>
           </li>
-          <li className="hover:bg-secondary/20 p-2 rounded-md cursor-pointer">
+          {/*   <li className="hover:bg-secondary/20 p-2 rounded-md cursor-pointer">
             Services
           </li>
           <li className="hover:bg-secondary/20 p-2 rounded-md cursor-pointer">
             Message
-          </li>
+          </li> */}
           <li
             onClick={() => {
               handleUserStatus(action(), "artisan-users", id);

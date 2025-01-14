@@ -11,6 +11,7 @@ import { IoFilterOutline } from "react-icons/io5";
 import PaymentDetail from "../modals/PaymentDetails";
 import BookingDetail from "../modals/BookingDetails";
 import EditBooking from "../modals/EditBooking";
+import { storage } from "@/utils/storage";
 
 export default function Bookings() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -45,7 +46,9 @@ export default function Bookings() {
   };
 
   const handleDropdownActions = (action, id) => {
-    sessionStorage.setItem("bookingId", id);
+    //sessionStorage.setItem("bookingId", id);
+
+    storage.set("bookingId", id);
 
     switch (action) {
       case "view":
