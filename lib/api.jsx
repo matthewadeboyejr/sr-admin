@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 const axiosInstance = axios.create({
-  baseURL: `${baseUrl}`,
+  baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}`,
   headers: {
     "Content-Type": "application/json",
   },
