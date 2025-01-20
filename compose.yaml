@@ -17,7 +17,7 @@ services:
           target: /app
           action: sync
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
 
     volumes:
       - .:/app

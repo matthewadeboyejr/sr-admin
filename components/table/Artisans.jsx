@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { CiCircleMore } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { IoFilterOutline } from "react-icons/io5";
-import Table from "../skeleton/table";
+import Table from "../skeleton/Table";
 
 export default function Artisans() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -168,7 +168,7 @@ export default function Artisans() {
           </div>
         </div>
         {isLoading && <Table />}
-        {artisansList.length === 0 ? (
+        {artisansList && artisansList.length === 0 ? (
           <p className="text-center opacity-60 text-sm ">
             No artisans data available
           </p>

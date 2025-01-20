@@ -15,7 +15,7 @@ import { handleRequest } from "@/lib/api";
 import UploadCtgImage from "../modals/UploadCtgImage";
 import EditCategory from "../modals/EditCategory";
 import { storage } from "@/utils/storage";
-import Table from "../skeleton/table";
+import Table from "../skeleton/Table";
 
 export default function ServiceCategories() {
   const [deleteState, setDeleteState] = useState({
@@ -308,7 +308,7 @@ export default function ServiceCategories() {
         </div>
 
         {isLoading && <Table />}
-        {categories.length === 0 ? (
+        {categories && categories.length === 0 ? (
           <p className="text-center opacity-60 text-sm ">
             No Service category data available
           </p>

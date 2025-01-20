@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { CiCircleMore } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { IoFilterOutline } from "react-icons/io5";
-import Table from "../skeleton/table";
+import Table from "../skeleton/Table";
 
 export default function ServiceUsers() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -159,7 +159,7 @@ export default function ServiceUsers() {
         </div>
 
         {isLoading && <Table />}
-        {serviceUsersList.length === 0 ? (
+        {serviceUsersList && serviceUsersList.length === 0 ? (
           <p className="text-center opacity-60 text-sm ">
             No service data available
           </p>

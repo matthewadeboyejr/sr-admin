@@ -3,14 +3,14 @@
 import { useModalControl } from "@/context/ModalControl";
 import { useUserContext } from "@/context/UsersContext";
 import { formatTimestamp } from "@/utils/formatTimestamp";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CiCircleMore } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { IoFilterOutline } from "react-icons/io5";
 import PaymentDetail from "../modals/PaymentDetails";
 import { storage } from "@/utils/storage";
-import Table from "../skeleton/table";
+import Table from "../skeleton/Table";
 
 export default function Payments() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -169,7 +169,7 @@ export default function Payments() {
           </div>
         </div>
         {isLoading && <Table />}
-        {paymentsList.length === 0 ? (
+        {paymentsList && paymentsList.length === 0 ? (
           <p className="text-center opacity-60 text-sm ">
             No payment data available
           </p>

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { CiCircleMore } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { IoFilterOutline } from "react-icons/io5";
-import Table from "../skeleton/table";
+import Table from "../skeleton/Table";
 
 export default function AdminUser() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -136,7 +136,7 @@ export default function AdminUser() {
           </div>
         </div>
         {isLoading && <Table />}
-        {adminUsersList.length === 0 ? (
+        {adminUsersList && adminUsersList.length === 0 ? (
           <p className="text-center opacity-60 text-sm ">
             No Admin user data available
           </p>

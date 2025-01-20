@@ -12,7 +12,7 @@ import PaymentDetail from "../modals/PaymentDetails";
 import BookingDetail from "../modals/BookingDetails";
 import EditBooking from "../modals/EditBooking";
 import { storage } from "@/utils/storage";
-import Table from "../skeleton/table";
+import Table from "../skeleton/Table";
 
 export default function Bookings() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -196,7 +196,7 @@ export default function Bookings() {
           </div>
         </div>
         {isLoading && <Table />}
-        {bookingsList.length === 0 ? (
+        {bookingsList && bookingsList.length === 0 ? (
           <p className="text-center opacity-60 text-sm ">
             No booking data available
           </p>
