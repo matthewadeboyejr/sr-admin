@@ -1,12 +1,7 @@
 "use client";
 
-import {
-  IoFilterOutline,
-  IoInformationCircle,
-  IoWalletOutline,
-} from "react-icons/io5";
+import { IoInformationCircle, IoWalletOutline } from "react-icons/io5";
 import SubmitButton from "@/components/buttons/SubmitButton";
-import { CiCircleMore } from "react-icons/ci";
 import PageTitle from "@/components/general/PageTitle";
 import { GoArrowUpRight } from "react-icons/go";
 import RevenueChart from "@/components/chart/RevenueChart";
@@ -80,8 +75,8 @@ const Dashboard = () => {
           </p>
           <p className="text-2xl font-semibold">{activeServUser}</p>
           <p className="text-xs">
-            <span>Request. </span>
-            <span> from ,500 users</span>
+            <span>Request </span>
+            <span> from 500 users</span>
           </p>
         </div>
         <div className="p-4 border rounded-md space-y-1 hover:scale-y-105">
