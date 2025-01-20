@@ -10,6 +10,7 @@ import { IoMdClose } from "react-icons/io";
 import { IoFilterOutline } from "react-icons/io5";
 import PaymentDetail from "../modals/PaymentDetails";
 import { storage } from "@/utils/storage";
+import Table from "../skeleton/table";
 
 export default function Payments() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -28,6 +29,7 @@ export default function Payments() {
   const paymentsList = paymentState?.data?.results || [];
   const prevPage = paymentState?.data?.previous || "";
   const nextPage = paymentState?.data?.next || "";
+  const isLoading = paymentState?.loading;
 
   const handlePageChange = (direction) => {
     if (direction === "next") {
@@ -166,9 +168,10 @@ export default function Payments() {
             <span className="text-xs">Filter</span>
           </div>
         </div>
+        {isLoading && <Table />}
         {paymentsList.length === 0 ? (
           <p className="text-center opacity-60 text-sm ">
-            No artisans data available
+            No payment data available
           </p>
         ) : (
           <div className="min-h-96 overflow-y-auto space-y-4 relative overflow-x-auto ">

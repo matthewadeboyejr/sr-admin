@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { CiCircleMore } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { IoFilterOutline } from "react-icons/io5";
+import Table from "../skeleton/table";
 
 export default function ArtisanServices() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -20,6 +21,7 @@ export default function ArtisanServices() {
   }, [artisanId]);
 
   const serviceList = serviceState?.data?.results || [];
+  const isLoading = serviceState?.loading;
   const router = useRouter();
 
   const params = useParams();
@@ -158,7 +160,7 @@ export default function ArtisanServices() {
             <span className="text-xs">Filter</span>
           </div>
         </div>
-
+        {isLoading && <Table />}
         {serviceList.length === 0 ? (
           <p className="text-center opacity-60 text-sm ">
             No service data available

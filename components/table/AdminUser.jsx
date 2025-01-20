@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { CiCircleMore } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { IoFilterOutline } from "react-icons/io5";
+import Table from "../skeleton/table";
 
 export default function AdminUser() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -17,6 +18,7 @@ export default function AdminUser() {
   }, [useState]);
 
   const adminUsersList = userState?.users?.getData?.results || [];
+  const isLoading = userState?.users?.getLoading;
 
   const toggleDropdown = (userId) => {
     setIsDropdownOpen((prev) => (prev === userId ? null : userId));
@@ -133,23 +135,30 @@ export default function AdminUser() {
             <span className="text-xs">Filter</span>
           </div>
         </div>
-        <div className="min-h-96 overflow-y-auto space-y-4 relative overflow-x-auto ">
-          <table className="w-full text-sm text-left rtl:text-right">
-            <thead className="bg-primary/10  rounded-md space sticky top-0 whitespace-nowrap">
-              <TableHeader />
-            </thead>
-            <tbody className="whitespace-nowrap">
-              {adminUsersList.map((user) => (
-                <TableRow
-                  key={user.id}
-                  user={user}
-                  isDropdownOpen={isDropdownOpen}
-                  toggleDropdown={toggleDropdown}
-                />
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {isLoading && <Table />}
+        {adminUsersList.length === 0 ? (
+          <p className="text-center opacity-60 text-sm ">
+            No Admin user data available
+          </p>
+        ) : (
+          <div className="min-h-96 overflow-y-auto space-y-4 relative overflow-x-auto ">
+            <table className="w-full text-sm text-left rtl:text-right">
+              <thead className="bg-primary/10  rounded-md space sticky top-0 whitespace-nowrap">
+                <TableHeader />
+              </thead>
+              <tbody className="whitespace-nowrap">
+                {adminUsersList.map((user) => (
+                  <TableRow
+                    key={user.id}
+                    user={user}
+                    isDropdownOpen={isDropdownOpen}
+                    toggleDropdown={toggleDropdown}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </section>
   );

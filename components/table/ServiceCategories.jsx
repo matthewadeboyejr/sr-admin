@@ -15,6 +15,7 @@ import { handleRequest } from "@/lib/api";
 import UploadCtgImage from "../modals/UploadCtgImage";
 import EditCategory from "../modals/EditCategory";
 import { storage } from "@/utils/storage";
+import Table from "../skeleton/table";
 
 export default function ServiceCategories() {
   const [deleteState, setDeleteState] = useState({
@@ -57,6 +58,7 @@ export default function ServiceCategories() {
   ]);
 
   const categories = categoryState?.data || [];
+  const isLoading = categoryState?.loading;
 
   const toggleDropdown = (categoryId) => {
     setIsDropdownOpen((prev) => (prev === categoryId ? null : categoryId));
@@ -304,23 +306,31 @@ export default function ServiceCategories() {
             <span className="text-xs">Filter</span>
           </div> */}
         </div>
-        <div className=" overflow-y-auto space-y-4 relative overflow-x-auto ">
-          <table className="w-full text-sm text-left rtl:text-right">
-            <thead className="bg-primary/10  rounded-md space  whitespace-nowrap">
-              <TableHeader />
-            </thead>
-            <tbody className="whitespace-nowrap">
-              {categories.map((category) => (
-                <TableRow
-                  key={category.id}
-                  category={category}
-                  isDropdownOpen={isDropdownOpen}
-                  toggleDropdown={toggleDropdown}
-                />
-              ))}
-            </tbody>
-          </table>
-        </div>
+
+        {isLoading && <Table />}
+        {categories.length === 0 ? (
+          <p className="text-center opacity-60 text-sm ">
+            No Service category data available
+          </p>
+        ) : (
+          <div className=" overflow-y-auto space-y-4 relative overflow-x-auto ">
+            <table className="w-full text-sm text-left rtl:text-right">
+              <thead className="bg-primary/10  rounded-md space  whitespace-nowrap">
+                <TableHeader />
+              </thead>
+              <tbody className="whitespace-nowrap">
+                {categories.map((category) => (
+                  <TableRow
+                    key={category.id}
+                    category={category}
+                    isDropdownOpen={isDropdownOpen}
+                    toggleDropdown={toggleDropdown}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
 
       {openCategoryDetails && <CategoryDetails />}

@@ -1,14 +1,13 @@
 "use client";
 
 import { useUserContext } from "@/context/UsersContext";
-import { axiosInstance } from "@/lib/api";
 import { formatTimestamp } from "@/utils/formatTimestamp";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CiCircleMore } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { IoFilterOutline } from "react-icons/io5";
+import Table from "../skeleton/table";
 
 export default function Artisans() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -16,6 +15,8 @@ export default function Artisans() {
 
   const router = useRouter();
   const [page, setPage] = useState(1);
+
+  const isLoading = userState?.artisans?.getLoading;
 
   useEffect(() => {
     handleGetUsers("artisan-user", page);
@@ -166,6 +167,7 @@ export default function Artisans() {
             <span className="text-xs">Filter</span>
           </div>
         </div>
+        {isLoading && <Table />}
         {artisansList.length === 0 ? (
           <p className="text-center opacity-60 text-sm ">
             No artisans data available
