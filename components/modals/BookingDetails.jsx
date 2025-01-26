@@ -1,6 +1,5 @@
 import { useModalControl } from "@/context/ModalControl";
 import { useUserContext } from "@/context/UsersContext";
-import { formatTimestamp } from "@/utils/formatTimestamp";
 import { storage } from "@/utils/storage";
 import React, { useEffect } from "react";
 import { RiCloseFill } from "react-icons/ri";

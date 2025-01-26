@@ -1,6 +1,5 @@
 import React from "react";
 import { LuClock } from "react-icons/lu";
-import BookingDetail from "../modals/UserBookingDetail";
 import { useModalControl } from "@/context/ModalControl";
 
 export default function ArtisanBookingItem() {

@@ -1,7 +1,5 @@
 "use client";
 
-import { IoFilterOutline } from "react-icons/io5";
-
 export default function Table() {
   const TableHeader = () => {
     return (

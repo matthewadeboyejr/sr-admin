@@ -1,7 +1,6 @@
 "use client";
 
 import ArtisanBookingItem from "./ArtisanBookingItem";
-import UserBookingItem from "./UserBookingItem";
 
 export default function ArtisanBookingActivities() {
   return (

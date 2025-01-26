@@ -1,9 +1,6 @@
 import { useModalControl } from "@/context/ModalControl";
-import { useUserContext } from "@/context/UsersContext";
-import { formatTimestamp } from "@/utils/formatTimestamp";
-import React, { useEffect } from "react";
+import React from "react";
 import { RiCloseFill } from "react-icons/ri";
-import EditBookingForm from "../forms/EditBookingForm";
 import EditCategoryForm from "../forms/EditCategoryForm";
 import { storage } from "@/utils/storage";
 
