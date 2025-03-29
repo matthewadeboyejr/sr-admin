@@ -18,11 +18,10 @@ COMMAND_ID=$(aws ssm send-command \
     --output text)
 echo "Final Output"
 echo "$OUTPUT"
-if [["$STATUS" =="Success"]]; then
-    echo "Docker cammand executed successfully."
+if [ "$STATUS" = "Success" ]; then
+    echo "Docker command executed successfully."
     exit 0
 else
     echo "Docker command failed with status: $STATUS"
     exit 1
 fi
-
