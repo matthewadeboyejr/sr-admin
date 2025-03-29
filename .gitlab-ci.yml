@@ -2,7 +2,7 @@ build:
     stage: build
     image: docker
     services:
-        - docker:27.2.0-bind
+        - docker:27.2.0-dind
     variables:
         DOCKER_HOST: tcp://docker:2376
         DOCKER_TLS_CERTDIR: "certs"
