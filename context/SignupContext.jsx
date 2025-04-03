@@ -58,18 +58,10 @@ export const SignupProvider = ({ children }) => {
       setUserRegData(regData);
 
       //navigate("/otp");
-      if (response.status === 200) {
+      if (response.status === 200 || response.status === 201) {
         toast.success(response?.data?.message);
         await router.push("/signup/otp");
       }
-
-      /*  if (!response.statusText === "Created") {
-        {
-          setRegisterData({ email: "", first_name: "", last_name: "" });
-          setPassword("");
-          setPassword2("");
-        }
-      } */
 
       setIsLoading(false);
     } catch (error) {

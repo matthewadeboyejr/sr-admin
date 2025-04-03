@@ -2,10 +2,10 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+const baseUrl = "https://api.service-rendering.co.uk";
 
 const axiosInstance = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}`,
+  baseURL: baseUrl,
   headers: {
     "Content-Type": "application/json",
   },
@@ -36,7 +36,7 @@ const handleRequest = async ({
   let toastId;
 
   try {
-    toastId = toast.loading("loading");
+    //toastId = toast.loading("loading");
     setLoading?.(true);
     const response = await axiosInstance({
       url,
@@ -45,7 +45,7 @@ const handleRequest = async ({
     });
 
     if (response?.statusText === "OK" && response?.status === 200) {
-      toast.success(response?.data?.message || "Completed");
+      //toast.success(response?.data?.message || "Completed");
       setResponse?.(response.data);
     } else {
       const errorMessage = response?.data?.message || "Unexpected response.";
@@ -58,9 +58,9 @@ const handleRequest = async ({
     setError?.(errorMessage);
     toast.error(errorMessage);
   } finally {
-    if (toastId) {
+    /*  if (toastId) {
       toast.dismiss(toastId);
-    }
+    } */
     setLoading(false);
   }
 };

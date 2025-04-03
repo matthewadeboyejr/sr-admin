@@ -1,8 +1,8 @@
-import localFont from "next/font/local";
 import "./globals.css";
 import { ModalControlProvider } from "@/context/ModalControl";
 import { LoginProvider } from "@/context/LoginContext";
 import { Toaster } from "react-hot-toast";
+import Progress from "@/components/general/Progress";
 
 export const metadata = {
   title: "Service rendering",
@@ -17,6 +17,7 @@ export default function RootLayout({ children }) {
         <LoginProvider>
           <ModalControlProvider>
             <Toaster />
+            <Progress />
             {children}
           </ModalControlProvider>
         </LoginProvider>

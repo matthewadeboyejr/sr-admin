@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth";
+import { baseUrl } from "@/lib/api";
 
 const LoginContext = createContext({});
 export default LoginContext;
@@ -24,8 +25,7 @@ export const LoginProvider = ({ children }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url =
-      "https://artisanapi-48408c1be722.herokuapp.com/account/api/v1/login/?login_type=admin";
+    const url = `${baseUrl}/account/api/v1/login/?login_type=admin`;
     const data = {
       username: loginData.email.toLowerCase(),
       password: loginData.password,

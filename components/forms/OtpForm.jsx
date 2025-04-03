@@ -11,7 +11,11 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 function OtpForm() {
-  const { userRegData, handleSubmit } = useSignupContext();
+  const {
+    userRegData,
+    handleSubmit,
+    isLoading: resendingOTP,
+  } = useSignupContext();
   const otpRef = useRef();
   const [otp, setOtp] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -19,7 +23,7 @@ function OtpForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [verify, setVerify] = useState(false);
 
-  useEffect(() => otpRef.current.focus());
+  //useEffect(() => otpRef.current.focus());
   const router = useRouter();
 
   const handleOtpSubmit = async (e) => {
@@ -87,7 +91,7 @@ function OtpForm() {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 autoComplete="off"
-                ref={otpRef}
+                //ref={otpRef}
                 value={otp}
                 onChange={(e) => {
                   setOtp(e.target.value);
@@ -117,12 +121,18 @@ function OtpForm() {
           </button>
           <p className="text-sm space-x-2 font-medium">
             <span>Didnt get the code?</span>
-            <span
+            <button
               onClick={handleSubmit}
               className="   text-secondary    hover:opacity-90"
             >
-              Resend
-            </span>
+              <div className="flex justify-center items-center">
+                {resendingOTP ? (
+                  <CgSpinnerTwo className="animate-spin text-2xl" />
+                ) : (
+                  "Resend"
+                )}
+              </div>
+            </button>
           </p>
         </form>
       )}

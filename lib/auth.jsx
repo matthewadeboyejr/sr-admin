@@ -28,7 +28,6 @@ export const useAuth = () => {
     try {
       const response = await axiosInstance.post(url);
       if (response.status === 200) {
-        console.log("response logout", response);
         toast.success(response?.data?.message || "Logged Out");
         Cookies.remove("accessToken");
         setIsAuthenticated(false);
