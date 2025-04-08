@@ -15,6 +15,8 @@ const Dashboard = () => {
 
   const yearValue = overviewState?.year ? `${overviewState.year}-01-01` : "";
 
+  console.log("Overview", overviewState);
+
   const handleYearChange = (e) => {
     const { value } = e.target;
     const selectedYear = new Date(value).getFullYear();

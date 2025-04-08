@@ -44,7 +44,7 @@ const handleRequest = async ({
       ...(data && { data }),
     });
 
-    if (response?.statusText === "OK" && response?.status === 200) {
+    if (response?.status === 200 || response?.status === 201) {
       //toast.success(response?.data?.message || "Completed");
       setResponse?.(response.data);
     } else {
